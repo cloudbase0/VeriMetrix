@@ -1,6 +1,7 @@
 __author__ = 'bernd'
 
 
+import os
 import argparse
 import curl
 
@@ -10,8 +11,13 @@ def VeMe_Init():
     #----------------------
 
     p = argparse.ArgumentParser(description='Launch VeriMetrix Agent')
-    p.add_argument('-c', dest='cfile_path', metavar='<path>',help='Path to config file')
-    p.add_argument('-t', dest='test_run', metavar='',help='Run agent initialization test only')
+    p.add_argument('-c',
+                   dest='cfile_path',
+                   metavar='<path>',
+                   help='Path to config file')
+    p.add_argument('-t', dest='test_run',
+                   action='store_true',
+                   help='Run agent initialization test only')
     cli_args = p.parse_args()
 
     #----------------------------
@@ -19,7 +25,10 @@ def VeMe_Init():
     #----------------------------
 
     # if -t print config file
-    print(cli_args)
+    if cli_args.test_run:
+        print(cli_args)
+
+    pt_f = open("veme_ag.conf",'r')
 
     #-------------------------------
     #   Try to connect ot collector
@@ -38,6 +47,13 @@ def VeMe_Init():
     # ....
 
 def main():
+
+    #-----------------------------------
+    #   Start Logger
+    #-----------------------------------
+
+
+
     VeMe_Init()
     print('We\'re all just Stardust ...')
 
