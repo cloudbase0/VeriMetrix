@@ -2,6 +2,7 @@ __author__ = 'bernd'
 
 
 import argparse
+import curl
 
 def VeMe_Init():
     #----------------------
