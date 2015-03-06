@@ -1,11 +1,19 @@
 __author__ = 'bernd'
 
 
-import os
+import logging
 import argparse
-import curl
 
 def VeMe_Init():
+    #-----------------------------------
+    #   Start Logger
+    #-----------------------------------
+    logging.basicConfig(level=logging.INFO,
+                        filename='veme_ag_sys.log',
+                        format='%(asctime)s %(message)s')
+    logger = logging.getLogger(__name__)
+    logger.info('Logger started')
+
     #----------------------
     #   Get CLI Parameter
     #----------------------
@@ -28,7 +36,11 @@ def VeMe_Init():
     if cli_args.test_run:
         print(cli_args)
 
-    pt_f = open("veme_ag.conf",'r')
+    try:
+        pt_f = open("veme_ag.conf",'r')
+    except Exception as e:
+        logger.error('Failed to open File', exc_info=True)
+
 
     #-------------------------------
     #   Try to connect ot collector
@@ -47,12 +59,6 @@ def VeMe_Init():
     # ....
 
 def main():
-
-    #-----------------------------------
-    #   Start Logger
-    #-----------------------------------
-
-
 
     VeMe_Init()
     print('We\'re all just Stardust ...')
