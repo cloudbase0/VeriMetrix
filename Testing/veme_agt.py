@@ -49,8 +49,6 @@ def VeMe_Init():
         pt_f.close()
 
 
-
-
     #-------------------------------
     #   Try to connect ot collector
     #-------------------------------
