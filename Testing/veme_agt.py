@@ -3,6 +3,7 @@ __author__ = 'bernd'
 
 import logging
 import argparse
+import configparser
 
 def VeMe_Init():
     #-----------------------------------
@@ -32,6 +33,16 @@ def VeMe_Init():
 
     #----------------------------
     #   Try to read config file
+    #
+    # Expected Structure
+    #
+    # [Agent]
+    # Certificate
+    #
+    # [Collector]
+    # primary host
+    # secondary host
+    # list of additional hosts
     #----------------------------
 
     try:
@@ -47,6 +58,8 @@ def VeMe_Init():
 
         print('<=== EOF ===>')
         pt_f.close()
+
+
 
 
     #-------------------------------
