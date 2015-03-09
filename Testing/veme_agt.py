@@ -12,7 +12,9 @@ def VeMe_Init():
                         filename='veme_ag_sys.log',
                         format='%(asctime)s %(message)s')
     logger = logging.getLogger(__name__)
-    logger.info('Logger started')
+    logger.info('============================')
+    logger.info('| VeriMetrix Agent started |')
+    logger.info('============================')
 
     #----------------------
     #   Get CLI Parameter
@@ -32,14 +34,21 @@ def VeMe_Init():
     #   Try to read config file
     #----------------------------
 
-    # if -t print config file
-    if cli_args.test_run:
-        print(cli_args)
-
     try:
         pt_f = open("veme_ag.conf",'r')
     except Exception as e:
         logger.error('Failed to open File', exc_info=True)
+
+    # if -t print config file
+    if cli_args.test_run:
+        print('<==='+pt_f.name+'===>')
+        for line in pt_f:
+            print(line.rstrip())
+
+        print('<=== EOF ===>')
+        pt_f.close()
+
+
 
 
     #-------------------------------
