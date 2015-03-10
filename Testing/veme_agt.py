@@ -45,22 +45,19 @@ def VeMe_Init():
     # list of additional hosts
     #----------------------------
 
-    try:
-        pt_f = open("veme_ag.conf",'r')
-    except Exception as e:
-        logger.error('Failed to open File', exc_info=True)
+    config = configparser.ConfigParser()
+    config.read('veme_ag.ini')
 
     # if -t print config file
     if cli_args.test_run:
-        print('<==='+pt_f.name+'===>')
-        for line in pt_f:
-            print(line.rstrip())
+        print('\nConfig File:')
+        for section_name in config.sections():
+            print('Section:', section_name)
+            for name, value in config.items(section_name):
+                print('  %s = %s' % (name, value))
 
-        print('<=== EOF ===>')
-        pt_f.close()
-
-
-
+    c1 = config['Collector']['c1']
+    logger.info('Trying to connect to primary collector: %s', c1)
 
     #-------------------------------
     #   Try to connect ot collector
