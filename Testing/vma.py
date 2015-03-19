@@ -4,6 +4,7 @@ __author__ = 'bernd'
 import logging
 import argparse
 import configparser
+from os.path import join, abspath, dirname
 
 here = abspath(dirname(__file__))
 default_conf_dir = join(here, "config")
@@ -81,7 +82,7 @@ def vma_init():
 
 def main():
 
-    VeMe_Init()
+    vma_init()
     print('We\'re all just Stardust ...')
 
 if __name__=='__main__':
